@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 
-// 食材データ（追加し放題）
+食材データ（追加し放題）
 const FOODS = [
   { name: "さつまいも", caloriesPerGram: 1.3 },
   { name: "白ごはん", caloriesPerGram: 1.68 },
