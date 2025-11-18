@@ -4,20 +4,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 
-食材データ（追加し放題）
-const FOODS = [
-  { name: "さつまいも", caloriesPerGram: 1.3 },
-  { name: "白ごはん", caloriesPerGram: 1.68 },
-  { name: "鶏胸肉", caloriesPerGram: 1.65 },
-  { name: "卵", caloriesPerGram: 1.55 },
-  { name: "アボカド", caloriesPerGram: 1.6 },
-  { name: "りんご", caloriesPerGram: 0.52 },
-  { name: "バナナ", caloriesPerGram: 0.86 },
-  { name: "ブロッコリー", caloriesPerGram: 0.33 },
-  { name: "トマト", caloriesPerGram: 0.18 },
-  { name: "レタス", caloriesPerGram: 0.15 },
-　{ name: "オートミール", caloriesPerGram: 3.8 },
-  { name: "納豆", caloriesPerGram: 2.0 },
+# 食材データ (追加し放題)
+ingredients = [
+    { "name": "さつまいも", "caloriesPerGram": 1.3 },
+    { "name": "白ごはん", "caloriesPerGram": 1.68 },
+    { "name": "鶏胸肉", "caloriesPerGram": 1.65 },
+    { "name": "卵", "caloriesPerGram": 1.55 },
+    { "name": "アボカド", "caloriesPerGram": 1.6 },
+    { "name": "りんご", "caloriesPerGram": 0.52 },
+    { "name": "バナナ", "caloriesPerGram": 0.86 },
+    { "name": "ブロッコリー", "caloriesPerGram": 0.33 },
+    { "name": "トマト", "caloriesPerGram": 0.18 },
+    { "name": "レタス", "caloriesPerGram": 0.15 }
+　　{ name: "オートミール", caloriesPerGram: 3.8 },
+ 　 { name: "納豆", caloriesPerGram: 2.0 },
   { name: "豆腐", caloriesPerGram: 0.76 },
   { name: "味噌汁", caloriesPerGram: 0.5 },
   { name: "ヨーグルト", caloriesPerGram: 0.62 },
