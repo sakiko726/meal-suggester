@@ -1,0 +1,43 @@
+from flask import Flask, request, jsonify
+from cycle import get_cycle_phase
+from personas import trainer_reply, sister_reply, doctor_reply
+from nutrition import analyze_meal, suggest_food
+
+app = Flask(__name__)
+
+@app.route("/cycle", methods=["POST"])
+def cycle():
+    data = request.json
+    cycle_length = data.get("cycle_length", 28)
+    day = data.get("day", 1)
+
+    phase = get_cycle_phase(cycle_length, day)
+
+    return jsonify({"phase": phase})
+
+@app.route("/meal", methods=["POST"])
+def meal():
+    data = request.json
+
+    meal_items = data.get("items", [])
+    persona = data.get("persona", "trainer")
+
+    deficit = analyze_meal(meal_items)
+    suggested = suggest_food(deficit)
+
+    if persona == "trainer":
+        msg = trainer_reply(deficit, suggested)
+    elif persona == "sister":
+        msg = sister_reply(deficit, suggested)
+    else:
+        msg = doctor_reply(deficit, suggested)
+
+    return jsonify({
+        "deficit": deficit,
+        "suggested": suggested,
+        "message": msg
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
