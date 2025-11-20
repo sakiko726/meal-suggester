@@ -8,22 +8,68 @@ st.set_page_config(page_title="HealthMate — 食事入力", page_icon="🍽️"
 # 食材データベース（1人前当たりの栄養） — 必要なら追加・編集可
 # -----------------------
 FOODS = {
-    "ごはん": {"kcal": 168, "protein": 3.0, "fat": 0.3, "carbs": 37},
-    "パン": {"kcal": 260, "protein": 9.0, "fat": 4.0, "carbs": 45},
-    "卵": {"kcal": 155, "protein": 13.0, "fat": 11.0, "carbs": 1.0},
-    "バナナ": {"kcal": 89, "protein": 1.1, "fat": 0.2, "carbs": 23},
-    "ヨーグルト": {"kcal": 62, "protein": 3.6, "fat": 3.0, "carbs": 5.2},
-    "ナッツ": {"kcal": 600, "protein": 20.0, "fat": 50.0, "carbs": 20.0},
-    "オートミール": {"kcal": 110, "protein": 4.0, "fat": 2.0, "carbs": 19.0},
-    "鶏むね肉": {"kcal": 165, "protein": 31.0, "fat": 4.0, "carbs": 0.0},
-    "豆腐": {"kcal": 76, "protein": 8.0, "fat": 5.0, "carbs": 2.0},
-    "アボカド": {"kcal": 187, "protein": 2.1, "fat": 18.0, "carbs": 6.0},
-    "納豆": {"kcal": 200, "protein": 16.5, "fat": 10.0, "carbs": 13.0},
-    "サーモン": {"kcal": 150, "protein": 20.0, "fat": 8.0, "carbs": 0.0},
-    "ツナ缶": {"kcal": 80, "protein": 18.0, "fat": 0.5, "carbs": 0.1},
-    "チーズ": {"kcal": 356, "protein": 22.0, "fat": 29.0, "carbs": 2.0},
-    "りんご": {"kcal": 57, "protein": 0.2, "fat": 0.1, "carbs": 15.0},
-    "いちご": {"kcal": 34, "protein": 0.9, "fat": 0.1, "carbs": 8.0}
+  "主食": {
+        "白ごはん": {"kcal_per_100g": 168, "protein": 2.5, "fat": 0.3, "carbs": 37},
+        "オートミール": {"kcal_per_100g": 380, "protein": 13.7, "fat": 6.2, "carbs": 69},
+        "うどん": {"kcal_per_100g": 105, "protein": 2.6, "fat": 0.4, "carbs": 21},
+        "そば": {"kcal_per_100g": 120, "protein": 4.8, "fat": 1.0, "carbs": 24},
+        "食パン": {"kcal_per_100g": 260, "protein": 9, "fat": 4, "carbs": 45},
+        # --- ここに主食を追加（あと200件でもOK） ---
+    },
+
+    "肉・魚": {
+        "鶏むね肉": {"kcal_per_100g": 165, "protein": 31, "fat": 4, "carbs": 0},
+        "鶏ささみ": {"kcal_per_100g": 105, "protein": 24, "fat": 0.8, "carbs": 0},
+        "豚ロース": {"kcal_per_100g": 240, "protein": 19, "fat": 17, "carbs": 0},
+        "牛赤身": {"kcal_per_100g": 182, "protein": 21, "fat": 10, "carbs": 0},
+        "サーモン": {"kcal_per_100g": 200, "protein": 20, "fat": 13, "carbs": 0},
+        "ツナ缶（水煮）": {"kcal_per_100g": 102, "protein": 23.5, "fat": 0.8, "carbs": 0},
+        # --- ここに肉・魚を追加 ---
+    },
+
+    "卵・大豆製品": {
+        "卵": {"kcal_per_100g": 151, "protein": 12.3, "fat": 10.3, "carbs": 0.7},
+        "豆腐": {"kcal_per_100g": 56, "protein": 4.9, "fat": 3, "carbs": 1.1},
+        "納豆": {"kcal_per_100g": 200, "protein": 16.5, "fat": 10, "carbs": 12},
+        # --- ここに追加 ---
+    },
+
+    "野菜": {
+        "ブロッコリー": {"kcal_per_100g": 33, "protein": 4.3, "fat": 0.5, "carbs": 7},
+        "トマト": {"kcal_per_100g": 18, "protein": 0.7, "fat": 0.1, "carbs": 3.8},
+        "レタス": {"kcal_per_100g": 15, "protein": 1.0, "fat": 0.2, "carbs": 2.8},
+        # --- 野菜を追加 ---
+    },
+
+    "果物": {
+        "バナナ": {"kcal_per_100g": 86, "protein": 1.1, "fat": 0.2, "carbs": 23},
+        "りんご": {"kcal_per_100g": 52, "protein": 0.2, "fat": 0.1, "carbs": 14},
+        "いちご": {"kcal_per_100g": 34, "protein": 0.9, "fat": 0.1, "carbs": 8},
+        # --- 果物を追加 ---
+    },
+
+    "乳製品・脂質": {
+        "ヨーグルト": {"kcal_per_100g": 62, "protein": 3.6, "fat": 3, "carbs": 5.2},
+        "チーズ": {"kcal_per_100g": 356, "protein": 22, "fat": 29, "carbs": 2},
+        "バター": {"kcal_per_100g": 700, "protein": 0.2, "fat": 81, "carbs": 0.1},
+        "ナッツ": {"kcal_per_100g": 600, "protein": 20, "fat": 50, "carbs": 20},
+        "アボカド": {"kcal_per_100g": 187, "protein": 2.1, "fat": 18, "carbs": 6},
+        # --- 脂質系を追加 ---
+    },
+
+    "加工食品・総菜": {
+        "唐揚げ": {"kcal_per_100g": 290, "protein": 17, "fat": 20, "carbs": 10},
+        "ハンバーグ": {"kcal_per_100g": 230, "protein": 14, "fat": 17, "carbs": 9},
+        "餃子": {"kcal_per_100g": 200, "protein": 8, "fat": 10, "carbs": 20},
+        # --- 総菜を追加 ---
+    },
+
+    "スイーツ": {
+        "チョコレート": {"kcal_per_100g": 558, "protein": 7.0, "fat": 34, "carbs": 55},
+        "アイスクリーム": {"kcal_per_100g": 180, "protein": 3, "fat": 8, "carbs": 23},
+        "クッキー": {"kcal_per_100g": 490, "protein": 6, "fat": 23, "carbs": 66},
+        # --- スイーツ追加 ---
+    }   
 }
 
 # -----------------------
@@ -76,25 +122,38 @@ with col2:
 # -----------------------
 with st.form("food_entry", clear_on_submit=True):
     st.subheader("食事を追加")
-    food = st.selectbox("食材・メニューを選ぶ", options=list(FOODS.keys()))
-    qty = st.number_input("分量（1人前 = 1.0）", min_value=0.1, max_value=10.0, value=1.0, step=0.1, format="%.1f")
-    note = st.text_input("備考（例: 朝食 / サラダに追加等）", value="")
+
+    category = st.selectbox("カテゴリ", options=list(FOODS.keys()))
+    food = st.selectbox("食品", options=list(FOODS[category].keys()))
+
+    gram = st.number_input("分量（g）", min_value=1, max_value=2000, value=100, step=1)
+# 100g あたり栄養に変換
+nut = FOODS[food]
+ratio = gram / 100  
+
+
+    note = st.text_input("備考（例: 朝食 / サラダに追加等）")
+
     submitted = st.form_submit_button("追加")
 
     if submitted:
-        nut = FOODS[food]
+        item = FOODS[category][food]
+
+        qty_factor = grams / 100.0
+        
         entry = {
             "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "category": category,
             "food": food,
-            "qty": qty,
-            "kcal": nut["kcal"] * qty,
-            "protein": nut["protein"] * qty,
-            "fat": nut["fat"] * qty,
-            "carbs": nut["carbs"] * qty,
-            "note": note
+            "grams": grams,
+            "kcal": item["kcal_per_100g"] * qty_factor,
+            "protein": item["protein"] * qty_factor,
+            "fat": item["fat"] * qty_factor,
+            "carbs": item["carbs"] * qty_factor,
+            "note": note,
         }
         st.session_state.meals.append(entry)
-        st.success(f"「{food}」を{qty}人前分 追加しました。")
+        st.success(f"{food} を {grams}g 追加しました！")
 
 # -----------------------
 # 今日の食事一覧表示 & 集計
