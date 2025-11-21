@@ -121,19 +121,30 @@ selected_food = st.selectbox(
 
 
 # =========================================================
-# 🍽 食事入力
+# 🍽 食事入力（グラムでOK！）
 # =========================================================
 st.header("🍽 食事入力（グラムでOK！）")
 
+# ↓ カテゴリ選択（上で定義済み FOODS_BY_CATEGORY を使う）
+category = st.selectbox("カテゴリを選ぶ", list(FOODS_BY_CATEGORY.keys()))
+
+# ↓ 選択したカテゴリの食品一覧
+food_names = list(FOODS_BY_CATEGORY[category].keys())
+
+# ↓ 食材選択（カテゴリごとに切り替わる）
 selected_food = st.selectbox("食べたものを選ぶ", food_names)
+
+# ↓ gram 入力
 grams = st.number_input("食べた量（g）", min_value=1, max_value=2000, value=100)
 
+# ↓ “追加する” ボタン
 if st.button("追加する 🍽️"):
-    base = FOODS[selected_food]
+    base = FOODS_BY_CATEGORY[category][selected_food]
     factor = grams / 100
 
     entry = {
         "time": datetime.now().strftime("%H:%M"),
+        "category": category,
         "food": selected_food,
         "grams": grams,
         "kcal": base["kcal"] * factor,
@@ -143,7 +154,7 @@ if st.button("追加する 🍽️"):
     }
 
     st.session_state.meals.append(entry)
-    st.success("追加しました！✨")
+    st.success(f"{selected_food} を追加しました！✨")
 
 
 # =========================================================
